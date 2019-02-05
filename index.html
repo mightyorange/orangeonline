@@ -14,6 +14,7 @@
     var token = params.ckWebAuthToken;
     document.getElementById('token').innerHTML=token;
     console.log(location);
+    window.location.href="oNotes://"+"?type="+"login"+'?ckWebAuthToken='+token;
   </script>
   <body>
       <p id='token'>
