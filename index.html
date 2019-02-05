@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <script>
-    function parse_url(_url) {
+    function parse_url(url) {
       var pattern = /(\w+)=(\w+)/gi;
       var parames = {};
       url.replace(pattern, function(a, b, c) {
