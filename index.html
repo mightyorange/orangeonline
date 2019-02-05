@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    function parse_url(_url) {
+      var pattern = /(\w+)=(\w+)/gi;
+      var parames = {};
+      url.replace(pattern, function(a, b, c) {
+        parames[b] = c;
+      });
+      return parames;
+    }
+    var params = parse_url(location.search);
+    var token = params.token;
+    console.log(location);
+  </script>
+  <body>
+      
+  </body>
+</html>
