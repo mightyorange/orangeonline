@@ -13,7 +13,7 @@
     var params = getQueryParams();
     var token = params.ckWebAuthToken;
     console.log(location);
-    window.location.href="oNotes://"+"?type="+"login"+'&ckWebAuthToken='+token;
+    window.location.href="oNotes://"+"?type="+"login"+"&"+location.search.substr(1);
   </script>
   <body>
       <p id='token'>
