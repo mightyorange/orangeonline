@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html>
   <script>
-  function getQueryParams() {
-    var query = location.search.substr(1);
-    var queryParams = {};
-    query.split("&").forEach(function (part) {
-      var item = part.split("=");
-      queryParams[item[0]] = decodeURIComponent(item[1]);
-    });
-    return queryParams;
-  }
+    function getQueryParams() {
+      var query = location.search.substr(1);
+      var queryParams = {};
+      query.split("&").forEach(function(part) {
+        var item = part.split("=");
+        queryParams[item[0]] = decodeURIComponent(item[1]);
+      });
+      return queryParams;
+    }
     var params = getQueryParams();
     var token = params.ckWebAuthToken;
     console.log(location);
-    window.location.href="oNotes://"+"?type="+"login"+"&"+location.search.substr(1);
+
+    function getQueryParams1(url) {
+        var query = url.substr(url.indexOf('?')+1);
+        var queryParams = {};
+        query.split("&").forEach(function (part) {
+          var item = part.split("=");
+          queryParams[item[0]] = decodeURIComponent(item[1]);
+        });
+        console.log('Url params is::', queryParams);
+        return queryParams;
+    }
+
+    
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf(" electron/") > -1) {
+      // Electron-specific code
+      var ckSession = getQueryParams1(location.href).ckWebAuthToken;
+      window.opener.postMessage(
+        JSON.stringify({
+          ckSession: ckSession,
+          status: 0
+        })
+      );
+    } else {
+      window.location.href =
+        "oNotes://" + "?type=" + "login" + "&" + location.search.substr(1);
+    }
   </script>
   <body>
-      <p id='token'>
-
-      </p>
+    <p id="token"></p>
   </body>
 </html>
