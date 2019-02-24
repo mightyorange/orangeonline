@@ -31,10 +31,10 @@
       // Electron-specific code
       var ckSession = getQueryParams1(location.href).ckWebAuthToken;
       window.opener.postMessage(
-        JSON.stringify({
+        {
           ckSession: ckSession,
           status: 0
-        })
+        }
       );
     } else {
       window.location.href =
